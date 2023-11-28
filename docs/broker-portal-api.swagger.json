@@ -409,7 +409,8 @@
           {
             "ApiKeyAuth": []
           }
-        ]
+        ],
+        "x-irreversible": true
       }
     },
     "/v1/spot/orders/{order_id}": {
@@ -1007,7 +1008,12 @@
     "ApiKeyAuth": {
       "type": "apiKey",
       "name": "KEY",
-      "in": "header"
+      "in": "header",
+      "x-amazon-apigateway-authorizer": {
+        "authorizerResultTtlInSeconds": 60,
+        "type": "token"
+      },
+      "x-amazon-apigateway-authtype": "oauth2"
     }
   },
   "security": [
