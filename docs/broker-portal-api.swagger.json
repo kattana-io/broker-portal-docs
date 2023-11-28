@@ -1,0 +1,1004 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "gRPC HTTP Broker Portal Trading Service",
+    "version": "0.0.1",
+    "contact": {
+      "name": "gPRC HTTP CEX Trading API project"
+    }
+  },
+  "schemes": [
+    "http",
+    "https",
+    "ws",
+    "wss"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/spot/accounts": {
+      "get": {
+        "operationId": "BrokerPortalAPI_ListSpotAccounts",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiAccounts"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "currency",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "exchange",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "UNDEFINED_EXCHANGE",
+              "GATE"
+            ],
+            "default": "UNDEFINED_EXCHANGE"
+          }
+        ],
+        "tags": [
+          "BrokerPortalAPI"
+        ]
+      }
+    },
+    "/v1/spot/batch_orders": {
+      "post": {
+        "operationId": "BrokerPortalAPI_CreateBatchOrders",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiBatchOrders"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "BrokerPortalAPI"
+        ]
+      }
+    },
+    "/v1/spot/open_orders": {
+      "get": {
+        "operationId": "BrokerPortalAPI_ListSpotOpenOrders",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiListOpenOrders"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "currency_pair",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "account",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "side",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "order_id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "exchange",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "UNDEFINED_EXCHANGE",
+              "GATE"
+            ],
+            "default": "UNDEFINED_EXCHANGE"
+          }
+        ],
+        "tags": [
+          "BrokerPortalAPI"
+        ]
+      }
+    },
+    "/v1/spot/order_book": {
+      "get": {
+        "operationId": "BrokerPortalAPI_ListOrderBook",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiOrderBookResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "currency_pair",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "interval",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "with_id",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "exchange",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "UNDEFINED_EXCHANGE",
+              "GATE"
+            ],
+            "default": "UNDEFINED_EXCHANGE"
+          }
+        ],
+        "tags": [
+          "BrokerPortalAPI"
+        ]
+      }
+    },
+    "/v1/spot/orders": {
+      "get": {
+        "operationId": "BrokerPortalAPI_ListSpotOrders",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiOrders"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "currency_pair",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "account",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "side",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "order_id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "exchange",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "UNDEFINED_EXCHANGE",
+              "GATE"
+            ],
+            "default": "UNDEFINED_EXCHANGE"
+          }
+        ],
+        "tags": [
+          "BrokerPortalAPI"
+        ]
+      },
+      "delete": {
+        "operationId": "BrokerPortalAPI_CancelAllSpotOrder",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiOrders"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "order_id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "currency_pair",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "account",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "exchange",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "UNDEFINED_EXCHANGE",
+              "GATE"
+            ],
+            "default": "UNDEFINED_EXCHANGE"
+          }
+        ],
+        "tags": [
+          "BrokerPortalAPI"
+        ]
+      },
+      "post": {
+        "operationId": "BrokerPortalAPI_CreateSpotOrder",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiOrder"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiOrder"
+            }
+          }
+        ],
+        "tags": [
+          "BrokerPortalAPI"
+        ]
+      }
+    },
+    "/v1/spot/orders/{order_id}": {
+      "get": {
+        "operationId": "BrokerPortalAPI_GetSpotOrder",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiOrder"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "order_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "currency_pair",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "account",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "side",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "exchange",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "UNDEFINED_EXCHANGE",
+              "GATE"
+            ],
+            "default": "UNDEFINED_EXCHANGE"
+          }
+        ],
+        "tags": [
+          "BrokerPortalAPI"
+        ]
+      },
+      "delete": {
+        "operationId": "BrokerPortalAPI_CancelSpotOrder",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiOrder"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "order_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "currency_pair",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "account",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "exchange",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "UNDEFINED_EXCHANGE",
+              "GATE"
+            ],
+            "default": "UNDEFINED_EXCHANGE"
+          }
+        ],
+        "tags": [
+          "BrokerPortalAPI"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "apiAccount": {
+      "type": "object",
+      "properties": {
+        "currency": {
+          "type": "string"
+        },
+        "available": {
+          "type": "string"
+        },
+        "locked": {
+          "type": "string"
+        }
+      }
+    },
+    "apiAccounts": {
+      "type": "object",
+      "properties": {
+        "account": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiAccount"
+          }
+        }
+      }
+    },
+    "apiBatchOrder": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string",
+          "title": "User defined information. If not empty, must follow the rules below:\n1. prefixed with `t-`\n2. no longer than 28 bytes without `t-` prefix\n3. can only include 0-9, A-Z, a-z, underscore(_), hyphen(-) or dot(.)"
+        },
+        "succeeded": {
+          "type": "boolean",
+          "title": "Whether the batch of orders succeeded"
+        },
+        "label": {
+          "type": "string",
+          "title": "Error label, if any, otherwise an empty string"
+        },
+        "message": {
+          "type": "string",
+          "title": "Detailed error message, if any, otherwise an empty string"
+        },
+        "id": {
+          "type": "string",
+          "title": "Order ID"
+        },
+        "create_time": {
+          "type": "string",
+          "title": "Creation time of order"
+        },
+        "update_time": {
+          "type": "string",
+          "title": "Last modification time of order"
+        },
+        "create_time_ms": {
+          "type": "string",
+          "format": "int64",
+          "title": "Creation time of order (in milliseconds)"
+        },
+        "update_time_ms": {
+          "type": "string",
+          "format": "int64",
+          "title": "Last modification time of order (in milliseconds)"
+        },
+        "status": {
+          "type": "string",
+          "title": "Order status  - `open`: to be filled - `closed`: filled - `cancelled`: cancelled"
+        },
+        "currency_pair": {
+          "type": "string",
+          "title": "Currency pair"
+        },
+        "type": {
+          "type": "string",
+          "title": "Order Type    - limit : Limit Order - market : Market Order"
+        },
+        "account": {
+          "type": "string",
+          "title": "Account type. spot - use spot account; margin - use margin account; cross_margin - use cross margin account, portfolio - portfolio account"
+        },
+        "side": {
+          "type": "string",
+          "title": "Order side"
+        },
+        "amount": {
+          "type": "string",
+          "title": "Trade amount"
+        },
+        "price": {
+          "type": "string",
+          "title": "Order price"
+        },
+        "time_in_force": {
+          "type": "string",
+          "title": "Time in force  - gtc: GoodTillCancelled - ioc: ImmediateOrCancelled, taker only - poc: PendingOrCancelled, makes a post-only order\nthat always enjoys a maker fee - fok: FillOrKill, fill either completely or none"
+        },
+        "iceberg": {
+          "type": "string",
+          "description": "Amount to display for the iceberg order. Null or 0 for normal orders.  Hiding all amount is not supported."
+        },
+        "auto_borrow": {
+          "type": "boolean",
+          "description": "Used in margin or cross margin trading to allow automatic loan of insufficient amount if balance is not enough."
+        },
+        "auto_repay": {
+          "type": "boolean",
+          "description": "Enable or disable automatic repayment for automatic borrow loan generated by cross margin order. Default is disabled.\nNote that:\n1. This field is only effective for cross margin orders. Margin account does not support setting auto repayment for orders.\n2. `auto_borrow` and `auto_repay` cannot be both set to true in one order."
+        },
+        "left": {
+          "type": "string",
+          "title": "Amount left to fill"
+        },
+        "fill_price": {
+          "type": "string",
+          "title": "Total filled in quote currency. Deprecated in favor of `filled_total`"
+        },
+        "filled_total": {
+          "type": "string",
+          "title": "Total filled in quote currency"
+        },
+        "fee": {
+          "type": "string",
+          "title": "Fee deducted"
+        },
+        "fee_currency": {
+          "type": "string",
+          "title": "Fee currency unit"
+        },
+        "point_fee": {
+          "type": "string",
+          "title": "Points used to deduct fee"
+        },
+        "gt_fee": {
+          "type": "string",
+          "title": "GT used to deduct fee"
+        },
+        "gt_discount": {
+          "type": "boolean",
+          "title": "Whether GT fee discount is used"
+        },
+        "rebated_fee": {
+          "type": "string",
+          "title": "Rebated fee"
+        },
+        "rebated_fee_currency": {
+          "type": "string",
+          "title": "Rebated fee currency unit"
+        },
+        "stp_id": {
+          "type": "integer",
+          "format": "int32",
+          "title": "Orders between users in the same `stp_id` group are not allowed to be self-traded\n1. If the `stp_id` of two orders being matched is non-zero and equal, they will not be executed.\nInstead, the corresponding strategy will be executed based on the `stp_act` of the taker.\n2. `stp_id` returns `0` by default for orders that have not been set for `STP group`"
+        },
+        "stp_act": {
+          "type": "string",
+          "title": "Self-Trading Prevention Action. Users can use this field to set self-trade prevetion strategies\n1. After users join the `STP Group`, he can pass `stp_act` to limit the user's self-trade prevetion strategy.\n If `stp_act` is not passed, the default is `cn` strategy。\n2. When the user does not join the `STP group`, an error will be returned when passing the `stp_act` parameter。\n3. If the user did not use 'stp_act' when placing the order, 'stp_act' will return '-'  - cn: Cancel newest,\n Cancel new orders and keep old ones - co: Cancel oldest, Cancel old orders and keep new ones - cb: Cancel both,\n Both old and new orders will be cancelled"
+        },
+        "finish_as": {
+          "type": "string",
+          "title": "How the order was finished.  - open: processing - filled: filled totally - cancelled:\nmanually cancelled - ioc: time in force is `IOC`, finish immediately - stp: cancelled because self trade prevention"
+        }
+      }
+    },
+    "apiBatchOrders": {
+      "type": "object",
+      "properties": {
+        "batch_order": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiBatchOrder"
+          }
+        }
+      }
+    },
+    "apiExchange": {
+      "type": "string",
+      "enum": [
+        "UNDEFINED_EXCHANGE",
+        "GATE"
+      ],
+      "default": "UNDEFINED_EXCHANGE"
+    },
+    "apiListOpenOrders": {
+      "type": "object",
+      "properties": {
+        "OpenOrders": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiOpenOrders"
+          }
+        }
+      }
+    },
+    "apiOpenOrders": {
+      "type": "object",
+      "properties": {
+        "currency_pair": {
+          "type": "string"
+        },
+        "Total": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "Orders": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiOrder"
+          }
+        }
+      }
+    },
+    "apiOrder": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "Order ID"
+        },
+        "uuid": {
+          "type": "string"
+        },
+        "exchange": {
+          "$ref": "#/definitions/apiExchange"
+        },
+        "currency_pair": {
+          "type": "string",
+          "title": "Currency pair"
+        },
+        "create_time": {
+          "type": "string",
+          "title": "Creation time of order"
+        },
+        "update_time": {
+          "type": "string",
+          "title": "Last modification time of order"
+        },
+        "create_time_ms": {
+          "type": "string",
+          "format": "int64",
+          "title": "Creation time of order (in milliseconds)"
+        },
+        "update_time_ms": {
+          "type": "string",
+          "format": "int64",
+          "title": "Last modification time of order (in milliseconds)"
+        },
+        "status": {
+          "type": "string",
+          "title": "Order status  - `open`: to be filled - `closed`: filled - `cancelled`: cancelled"
+        },
+        "type": {
+          "type": "string",
+          "title": "Order Type    - limit : Limit Order - market : Market Order"
+        },
+        "account": {
+          "type": "string",
+          "title": "Account type, spot - spot account, margin - margin account, cross_margin - cross margin account,\nportfolio - portfolio account  Portfolio margin account must set to `cross_margin`"
+        },
+        "side": {
+          "type": "string",
+          "title": "Order side"
+        },
+        "amount": {
+          "type": "string",
+          "title": "When `type` is limit, it refers to base currency.\nFor instance, `BTC_USDT` means `BTC`  When `type` is `market`, it refers to different currency according\nto `side`  - `side` : `buy` means quote currency,\n`BTC_USDT` means `USDT` - `side` : `sell` means base currency，`BTC_USDT` means `BTC`"
+        },
+        "price": {
+          "type": "string",
+          "title": "Price can't be empty when `type`= `limit`"
+        },
+        "time_in_force": {
+          "type": "string",
+          "title": "Time in force  - gtc: GoodTillCancelled - ioc: ImmediateOrCancelled, taker only - poc: PendingOrCancelled,\nmakes a post-only order that always enjoys a maker fee - fok: FillOrKill, fill either completely or none\nOnly `ioc` and `fok` are supported when `type`=`market`"
+        },
+        "iceberg": {
+          "type": "string",
+          "description": "Amount to display for the iceberg order. Null or 0 for normal orders.  Hiding all amount is not supported."
+        },
+        "auto_borrow": {
+          "type": "boolean",
+          "description": "Used in margin or cross margin trading to allow automatic loan of insufficient amount if balance is not enough."
+        },
+        "auto_repay": {
+          "type": "boolean",
+          "description": "Enable or disable automatic repayment for automatic borrow loan generated by cross margin order. Default is disabled.\nNote that:  1. This field is only effective for cross margin orders. Margin account does not support setting auto\nrepayment for orders. 2. `auto_borrow` and `auto_repay` cannot be both set to true in one order."
+        },
+        "left": {
+          "type": "string",
+          "title": "Amount left to fill"
+        },
+        "fill_price": {
+          "type": "string",
+          "title": "Total filled in quote currency. Deprecated in favor of `filled_total`"
+        },
+        "filled_total": {
+          "type": "string",
+          "title": "Total filled in quote currency"
+        },
+        "avg_deal_price": {
+          "type": "string",
+          "title": "Average fill price"
+        },
+        "fee": {
+          "type": "string",
+          "title": "Fee deducted"
+        },
+        "fee_currency": {
+          "type": "string",
+          "title": "Fee currency unit"
+        },
+        "point_fee": {
+          "type": "string",
+          "title": "Points used to deduct fee"
+        },
+        "gt_fee": {
+          "type": "string",
+          "title": "GT used to deduct fee"
+        },
+        "gt_maker_fee": {
+          "type": "string",
+          "title": "GT used to deduct maker fee"
+        },
+        "gt_taker_fee": {
+          "type": "string",
+          "title": "GT used to deduct taker fee"
+        },
+        "gt_discount": {
+          "type": "boolean",
+          "title": "Whether GT fee discount is used"
+        },
+        "rebated_fee": {
+          "type": "string",
+          "title": "Rebated fee"
+        },
+        "rebated_fee_currency": {
+          "type": "string",
+          "title": "Rebated fee currency unit"
+        },
+        "stp_id": {
+          "type": "integer",
+          "format": "int32",
+          "title": "Orders between users in the same `stp_id` group are not allowed to be self-traded  1. If the `stp_id` of two\norders being matched is non-zero and equal, they will not be executed. Instead, the corresponding strategy will be\nexecuted based on the `stp_act` of the taker. 2. `stp_id` returns `0` by default for orders that have not been set for `STP group`"
+        },
+        "stp_act": {
+          "type": "string",
+          "title": "Self-Trading Prevention Action. Users can use this field to set self-trade prevetion strategies\n1. After users join the `STP Group`, he can pass `stp_act` to limit the user's self-trade prevetion strategy.\nIf `stp_act` is not passed, the default is `cn` strategy。 2. When the user does not join the `STP group`, an error\nwill be returned when passing the `stp_act` parameter。 3. If the user did not use 'stp_act' when placing the order,\n'stp_act' will return '-'  - cn: Cancel newest, Cancel new orders and keep old ones - co: Cancel oldest, Cancel\nold orders and keep new ones - cb: Cancel both, Both old and new orders will be cancelled"
+        },
+        "finish_as": {
+          "type": "string",
+          "title": "How the order was finished.  - open: processing - filled: filled totally - cancelled: manually cancelled - ioc:\ntime in force is `IOC`, finish immediately - stp: cancelled because self trade prevention"
+        }
+      }
+    },
+    "apiOrderBookResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64",
+          "title": "Order book ID, which is updated whenever the order book is changed. Valid only when `with_id` is set to `true`"
+        },
+        "current": {
+          "type": "string",
+          "format": "int64",
+          "title": "The timestamp of the response data being generated (in milliseconds)"
+        },
+        "update": {
+          "type": "string",
+          "format": "int64",
+          "title": "The timestamp of when the orderbook last changed (in milliseconds)"
+        },
+        "asks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiquote"
+          },
+          "title": "Asks order depth"
+        },
+        "bids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiquote"
+          },
+          "title": "Bids order depth"
+        }
+      }
+    },
+    "apiOrders": {
+      "type": "object",
+      "properties": {
+        "order": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiOrder"
+          }
+        },
+        "exchange": {
+          "$ref": "#/definitions/apiExchange"
+        }
+      }
+    },
+    "apiquote": {
+      "type": "object",
+      "properties": {
+        "quote": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "type_url": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}
