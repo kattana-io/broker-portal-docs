@@ -404,6 +404,11 @@
         ],
         "tags": [
           "BrokerPortalAPI"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
         ]
       }
     },
@@ -997,5 +1002,17 @@
         }
       }
     }
-  }
+  },
+  "securityDefinitions": {
+    "ApiKeyAuth": {
+      "type": "apiKey",
+      "name": "KEY",
+      "in": "header"
+    }
+  },
+  "security": [
+    {
+      "ApiKeyAuth": []
+    }
+  ]
 }
