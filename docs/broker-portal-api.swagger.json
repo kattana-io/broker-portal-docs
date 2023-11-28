@@ -1,17 +1,14 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "gRPC HTTP Broker Portal Trading Service",
+    "title": "Broker Portal Trading Service",
     "version": "0.0.1",
     "contact": {
-      "name": "gPRC HTTP CEX Trading API project"
+      "name": "CEX Trading API project"
     }
   },
   "schemes": [
-    "http",
-    "https",
-    "ws",
-    "wss"
+    "https"
   ],
   "consumes": [
     "application/json"
